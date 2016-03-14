@@ -22,6 +22,7 @@ Sends push notification to list of appboy users, return the response from appboy
         campaignId: (optional, string) see Campaign Identifier on appboy,
         freqCap: (optional, bool) ignore frequency_capping for campaigns, defaults to false,
         subState: (optional, string) ('opted_in'), ('subscribed') ('all'). Defaults to 'subscribed',
+        deepLinks: (optional, Dictionaty<string>) ('ios'), ('android') ('kindle') ('web').
     }
 ```
 

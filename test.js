@@ -1,55 +1,67 @@
 var t = require('blue-tape');
 var appboySdk = require('./app.js');
-var groupId = "";
+var groupId = "<your-groupId>";
 var recipients = ["2e8de969-3ab0-4344-b55f-bb7ffb912422", "2b711785-5f5a-4640-bf65-4771cc35cff1"];
 var text = "This is a test notification";
 var title = "This is the title";
 var badge = 1;
 var alert = "default";
 var contentAvailable = true;
+var deepLinks = {
+    "ios": "myapp://deeplink/openContent",
+    "android": "myapp://deeplink/openContent",
+    "kindle": "",
+    "web": "",
+};
 
 t.test("Basic fields entered", function(t) {
     var config = {
         groupId: groupId,
         recipients: recipients,
-        text: text,        
+        text: text,
         title: title,
+        deepLinks: deepLinks
     }
-    return appboySdk.sendPush(config).then(function (res){
-        t.equals(res.message, "success", "OK");       
+    return appboySdk.sendPush(config).then(function(res) {
+        t.equals(res.message, "success", "OK");
     })
 });
-t.test("All fields entered", function(t) {  
+t.test("All fields entered", function(t) {
     var config = {
         groupId: groupId,
         recipients: recipients,
-        text: text,        
+        text: text,
         title: title,
         badge: badge,
-        alert: alert        
+        alert: alert,
+        deepLinks: deepLinks
     }
-    return appboySdk.sendPush(config).then(function (res){
-        t.equals(res.message, "success", "OK");        
+    return appboySdk.sendPush(config).then(function(res) {
+        t.equals(res.message, "success", "OK");
     })
 });
-t.test("contentAvalible (silent push)", function (t) {
+t.test("contentAvalible (silent push)", function(t) {
     var config = {
         groupId: groupId,
         recipients: recipients,
+        text: text,
+        title: title,
         contentAvalible: contentAvailable,
-        badge: badge
+        badge: badge,
+        deepLinks: deepLinks
     }
-    return appboySdk.sendPush(config).then(function (res) {
+    return appboySdk.sendPush(config).then(function(res) {
         t.equals(res.message, "success", "OK");
     })
 });
 t.test("Missing fields", function(t) {
-     var config = {
+    var config = {
         groupId: groupId,
-        text: text,        
-        title: title,       
-     }
-     return appboySdk.sendPush(config).then(function (res){
-         t.notEqual(res.message, "success", "OK");   
-     })
+        text: text,
+        title: title,
+        deepLinks: deepLinks
+    }
+    return appboySdk.sendPush(config).then(function(res) {
+        t.notEqual(res.message, "success", "OK");
+    })
 });
