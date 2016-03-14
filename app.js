@@ -2,6 +2,8 @@ var request = require('request');
 var Promise = require('bluebird');
 
 module.exports.sendPush = function sendPush(config) {
+    if(!config.deepLinks) config.deepLinks = {};
+     
     return new Promise(function(resolve, reject) {
         request({
             url: 'https://api.appboy.com/messages/send',
