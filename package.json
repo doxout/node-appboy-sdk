@@ -1,6 +1,6 @@
 {
     "name": "appboy-sdk",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "appboy sdk",
     "main": "app.js",
     "author": "Doxout",
