@@ -17,7 +17,7 @@ Sends push notification to list of appboy users, return the response from appboy
         title: (required, string) the title that appears in the notification drawer,
         badge: (optional, int) the badge count after this message,
         alert: (optional, string) the location of a custom notification sound within the app
-        contentAvalible: (optional, boolean) used for silent notifications
+        contentAvailable: (optional, boolean) used for silent notifications
         segmentId: (optional, string) see Segment Identifier on appboy,
         campaignId: (optional, string) see Campaign Identifier on appboy,
         freqCap: (optional, bool) ignore frequency_capping for campaigns, defaults to false,

@@ -16,9 +16,9 @@ module.exports.sendPush = function sendPush(config) {
                 "override_frequency_capping": config.freqCap,
                 "recipient_subscription_state": config.subState,
                 "messages": {
-                    "apple_push": config.contentAvalible ?
+                    "apple_push": config.contentAvailable ?
                         {
-                            "content-available": config.contentAvalible,
+                            "content-available": config.contentAvailable,
                             "badge": config.badge
                         } : {
                             "alert": config.text,
@@ -27,9 +27,9 @@ module.exports.sendPush = function sendPush(config) {
                             "sound": config.alert,
                             "custom_uri": config.deepLinks["ios"]
                         },
-                    "android_push": config.contentAvalible ?
+                    "android_push": config.contentAvailable ?
                         {
-                            "send_to_sync": config.contentAvalible
+                            "send_to_sync": config.contentAvailable
                         } : {
                             "alert": config.text,
                             "title": config.title,
