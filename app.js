@@ -2,9 +2,9 @@ var request = require('request');
 var Promise = require('bluebird');
 
 module.exports.sendPush = function sendPush(config) {
-    if(!config.deepLinks) config.deepLinks = {};
-     
-    return new Promise(function(resolve, reject) {
+    if (!config.deepLinks) config.deepLinks = {};
+
+    return new Promise(function (resolve, reject) {
         request({
             url: 'https://api.appboy.com/messages/send',
             method: 'POST',
@@ -16,7 +16,7 @@ module.exports.sendPush = function sendPush(config) {
                 "override_frequency_capping": config.freqCap,
                 "recipient_subscription_state": config.subState,
                 "messages": {
-                    "apple_push": config.contentAvailable ?
+                    "apple_push": config.silent ?
                         {
                             "content-available": config.contentAvailable,
                             "badge": config.badge
@@ -28,7 +28,7 @@ module.exports.sendPush = function sendPush(config) {
                             "sound": config.alert,
                             "custom_uri": config.deepLinks["ios"]
                         },
-                    "android_push": config.contentAvailable ?
+                    "android_push": config.silent ?
                         {
                             "send_to_sync": config.contentAvailable
                         } : {
@@ -50,7 +50,7 @@ module.exports.sendPush = function sendPush(config) {
                     }
                 }
             }
-        }, function(error, response, body) {
+        }, function (error, response, body) {
             if (error) {
                 console.log(error, config);
                 reject(error);
