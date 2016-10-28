@@ -21,6 +21,7 @@ module.exports.sendPush = function sendPush(config) {
                             "content-available": config.contentAvailable,
                             "badge": config.badge
                         } : {
+                            "content-available": config.contentAvailable,
                             "alert": config.text,
                             "title": config.title,
                             "badge": config.badge,
